@@ -1,11 +1,12 @@
 package com.zlody69.zlodyWebProj.services;
 
 import com.zlody69.zlodyWebProj.model.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     void addUser(User user);
 
     void updateUser(User user, Long userId);
@@ -15,4 +16,6 @@ public interface UserService {
     User findUser(Long userId);
 
     void deleteUser(Long userId);
+
+    User findUserByUsername(String name);
 }

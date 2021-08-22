@@ -44,8 +44,20 @@ public class UserDaoImp implements UserDao {
         updateUser.setName(user.getName());
         updateUser.setSurName(user.getSurName());
         updateUser.setAge(user.getAge());
+        updateUser.setPassword(user.getPassword());
+        updateUser.setRoles(user.getRoles());
         entityManager.merge(updateUser);
     }
+
+    @Override
+    public User findUserByUsername(String name){
+        User fUSer = entityManager.createQuery("select user from User user where user.name=:name",User.class)
+                .setParameter("name", name)
+                .getSingleResult();
+        return fUSer;
+    }
+
+
 
 
 
